@@ -1,9 +1,7 @@
-
 # Income Prediction Using CRISP-DM Methodology
 
 ## Overview
-
-This project uses the CRISP-DM methodology to predict whether an individual's income exceeds 50K (greater than 50K) or is less than or equal to 50K. The classification is based on demographic and employment-related data, such as age, education, occupation, and hours worked. This model can help organizations, policymakers, and research institutions understand the socioeconomic factors affecting income distribution.
+The goal of this project is to predict whether an individual's income exceeds 50K (>50K) or is less than or equal to 50K (<=50K). This binary classification problem involves using demographic and employment-related data, such as age, education, occupation, and hours worked, to estimate an individual’s income level. The outcome of this analysis can be used by companies, policymakers, and research institutions to better understand the socioeconomic factors affecting income distribution.
 
 ### Dataset: [UCI Adult (Census Income) Dataset](https://archive.ics.uci.edu/dataset/2/adult)
 
@@ -13,45 +11,50 @@ The dataset contains demographic and employment data for individuals and is used
 
 This project follows the CRISP-DM methodology:
 
-1. **Business Understanding**  
-   The objective is to predict whether an individual’s income is above 50K based on demographic features. This information is essential for businesses and policymakers aiming to understand income disparities.
+### 1. Business Understanding
+- **Objective**: Predict whether an individual's income exceeds 50K based on demographic features.
+- **Justification for Dataset**: The UCI Adult (Census Income) dataset captures various factors like age, education, work class, and occupation, making it suitable for income prediction.
 
-2. **Data Understanding**  
-   - **Dataset Features**: The dataset includes both numeric and categorical features such as `age`, `education`, `occupation`, `capital-gain`, etc.
-   - **Correlation Analysis**: Certain features like `education-num` and `capital-gain` show a correlation with income, indicating their predictive power.
-   - **Missing Values**: Columns like `workclass`, `occupation`, and `native-country` have missing values, which were handled by imputation.
+### 2. Data Understanding
+- **Dataset Features**: The dataset includes both numeric and categorical features such as `age`, `education`, `occupation`, `capital-gain`, etc.
+- **Correlation Analysis**: Certain features like `education-num` and `capital-gain` show a correlation with income, indicating their predictive power.
+- **Missing Values**: Columns like `workclass`, `occupation`, and `native-country` have missing values, which were handled by imputation.
 
-3. **Data Preparation**  
-   - **Handling Missing Data**: Imputation was done with "Unknown" for missing values in categorical features.
-   - **Skewness Treatment**: Log transformations were applied to features like `capital-gain` and `capital-loss` due to skewness.
-   - **Categorical Encoding**: Label Encoding was used for categorical features to prepare them for machine learning models.
-   - **Target Variable Encoding**: The target `income` was encoded into binary values (`>50K` = 1, `<=50K` = 0).
+### 3. Data Preparation
+- **Handling Missing Data**: Imputation was done with "Unknown" for missing values in categorical features.
+- **Skewness Treatment**: Log transformations were applied to features like `capital-gain` and `capital-loss` due to skewness.
+- **Categorical Encoding**: Label Encoding was used for categorical features to prepare them for machine learning models.
+- **Target Variable Encoding**: The target `income` was encoded into binary values (`>50K` = 1, `<=50K` = 0).
 
-4. **Modeling (with SMOTE)**  
-   Several models were trained to classify income, including:
-   - Logistic Regression
-   - Decision Tree
-   - Random Forest
-   - K-Nearest Neighbors (KNN)
-   - Support Vector Machine (SVM)
-   - Gradient Boosting
+### 4. Modeling (with SMOTE)
+- **Objective**: Train multiple machine learning models to classify income.
+- **Models Trained**:
+  - Logistic Regression
+  - Decision Tree
+  - Random Forest
+  - K-Nearest Neighbors (KNN)
+  - Support Vector Machine (SVM)
+  - Gradient Boosting Classifier
 
-   **Handling Class Imbalance**: SMOTE (Synthetic Minority Oversampling Technique) was applied to balance the dataset.
+- **Class Imbalance Handling**: SMOTE (Synthetic Minority Oversampling Technique) was applied to balance the dataset.
 
-5. **Evaluation**  
-   Models were evaluated using:
-   - Accuracy
-   - Precision
-   - Recall
-   - F1-Score
+### 5. Evaluation
+- **Evaluation Metrics**: Models were evaluated using accuracy, precision, recall, and F1-score.
+- **Best Performing Model**:  
+  Gradient Boosting achieved the highest F1-score (0.692) and strong recall (0.832), making it the final model selected for deployment.
 
-   **Best Performing Model**:  
-   The Gradient Boosting Classifier outperformed other models in terms of F1-Score (0.692) and recall (0.832), making it the final model selected for deployment.
+### 6. Deployment
+- **Model Application**: The Gradient Boosting model can be deployed as an API to predict income based on user inputs.
+- **API Integration**: An API endpoint can be created to receive input from web applications and return a prediction.
+- **Web Application**: The model can be integrated into a web-based dashboard for real-time predictions.
 
-6. **Deployment**  
-   The Gradient Boosting model can be deployed in a production environment:
-   - **API Integration**: The model can be integrated into a web application or API for real-time income predictions.
-   - **Monitoring**: Regular monitoring and retraining will be implemented to ensure model performance remains accurate over time.
+## Image: Model Comparison
+
+![Model Comparison](https://github.com/Geo-y20/Income_Prediction_Using_CRISP_DM_Methodology/blob/main/Model%20Comparison.png)
+
+## Full Documentation
+
+For the detailed methodology and steps involved, refer to the [Income Prediction Using CRISP-DM Methodology PDF](assets/documents/Income_Prediction_Using_CRISP-DM_Methodology.pdf).
 
 ## Installation
 
@@ -66,7 +69,13 @@ pip install pandas numpy scikit-learn imbalanced-learn matplotlib seaborn
 1. Clone the repository:
 
 ```bash
-git clone <https://github.com/Geo-y20/Income_Prediction_Using_CRISP_DM_Methodology.git>
+git clone <repository-url>
+```
+
+2. Run the model training script:
+
+```bash
+python income_prediction.py
 ```
 
 3. For deployment, the model can be integrated into an API using Flask or FastAPI.
@@ -86,7 +95,7 @@ The final model selection based on SMOTE-enhanced training:
 
 ## Conclusion
 
-The project successfully applies the CRISP-DM methodology to predict income levels using demographic data. The selected Gradient Boosting model shows excellent performance and can be deployed to help businesses, policymakers, and other stakeholders make informed decisions about income-based strategies.
+This project successfully applies the CRISP-DM methodology to predict income levels using demographic data. The selected Gradient Boosting model shows excellent performance and can be deployed to help businesses, policymakers, and other stakeholders make informed decisions about income-based strategies.
 
 ## Future Work
 
